@@ -12,7 +12,7 @@ namespace Microsoft.VisualStudio.Text.Editor
     using System.Diagnostics;
 
     [Export]
-    class PlatformCatalog
+    public class PlatformCatalog
     {
         static PlatformCatalog instance;
         public static PlatformCatalog Instance

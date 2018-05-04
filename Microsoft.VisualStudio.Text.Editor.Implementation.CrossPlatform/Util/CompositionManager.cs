@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Composition;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.VisualStudio.Text.Editor
 {
@@ -36,25 +37,48 @@ namespace Microsoft.VisualStudio.Text.Editor
             RuntimeComposition = CreateRuntimeCompositionFromDiscovery();
             ExportProviderFactory = RuntimeComposition.CreateExportProviderFactory();
             ExportProvider = ExportProviderFactory.CreateExportProvider();
+            //Console.WriteLine("--- exported contracts:");
+            //foreach (var part in RuntimeComposition.Parts)
+            //{
+            //    Console.WriteLine("Part:" + part.TypeRef.FullName);
+            //    foreach (var export in part.Exports)
+            //        Console.WriteLine(export.ContractName);
+            //}
         }
         readonly static string[] MefAssemblies = {
+            "Microsoft.VisualStudio.Composition",
+            "Microsoft.VisualStudio.CoreUtility",
             "Microsoft.VisualStudio.Text.Data",
             "Microsoft.VisualStudio.Text.Logic",
             "Microsoft.VisualStudio.Text.UI",
-            "Microsoft.VisualStudio.Text.UI.Wpf",
             "Microsoft.VisualStudio.Text.Implementation",
-            "Microsoft.CodeAnalysis.EditorFeatures",
-            "Microsoft.CodeAnalysis.EditorFeatures.Text",
-            "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform"
+            "Microsoft.VisualStudio.Threading",
+            //"Microsoft.CodeAnalysis.EditorFeatures",
+            //"Microsoft.CodeAnalysis.EditorFeatures.Text"
         };
         RuntimeComposition CreateRuntimeCompositionFromDiscovery()
         {
-            var assemblies = new Assembly[MefAssemblies.Length];
+            var assemblies = new Assembly[MefAssemblies.Length + 1];
+            assemblies[MefAssemblies.Length] = Assembly.GetCallingAssembly();
+            var currentAssemblies = AppDomain.CurrentDomain.GetAssemblies();
             for (int i = 0; i < MefAssemblies.Length; i++)
             {
                 try
                 {
-                    assemblies[i] = Assembly.Load(MefAssemblies[i]);
+                    foreach (var asm in currentAssemblies)
+                    {
+                        if (asm.GetName().Name == MefAssemblies[i])
+                        {
+                            assemblies[i] = asm;
+                            break;
+                        }
+                    }
+
+                    if (assemblies[i] == null)
+                    {
+                        // Console.WriteLine("load from disk:" + MefAssemblies[i]);
+                        assemblies[i] = Assembly.Load(MefAssemblies[i]);
+                    }
                 } catch (Exception e) {
                     LoggingService.LogError("Error while loading mef catalog assembly " + MefAssemblies[i], e);
                 }
