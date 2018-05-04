@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtkStartup", "GtkStartup\GtkStartup.csproj", "{11CBD621-4DB7-4B9E-865E-81D399B01760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform", "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.csproj", "{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		DebugMac|Any CPU = DebugMac|Any CPU
+		ReleaseMac|Any CPU = ReleaseMac|Any CPU
+		DebugGtk|x86 = DebugGtk|x86
+		ReleaseGtk|x86 = ReleaseGtk|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugMac|Any CPU.ActiveCfg = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugMac|Any CPU.Build.0 = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseMac|Any CPU.ActiveCfg = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseMac|Any CPU.Build.0 = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugGtk|x86.ActiveCfg = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugGtk|x86.Build.0 = DebugGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseGtk|x86.ActiveCfg = ReleaseGtk|x86
+		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseGtk|x86.Build.0 = ReleaseGtk|x86
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugMac|Any CPU.ActiveCfg = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugMac|Any CPU.Build.0 = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseMac|Any CPU.ActiveCfg = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseMac|Any CPU.Build.0 = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugGtk|x86.ActiveCfg = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugGtk|x86.Build.0 = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseGtk|x86.ActiveCfg = ReleaseGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseGtk|x86.Build.0 = ReleaseGtk|Any CPU
+	EndGlobalSection
+EndGlobal
