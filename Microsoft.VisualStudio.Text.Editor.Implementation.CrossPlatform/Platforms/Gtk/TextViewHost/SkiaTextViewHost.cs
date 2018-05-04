@@ -160,8 +160,17 @@ namespace Microsoft.VisualStudio.Text.Editor
 
             var documentFactoryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Text.ITextDocumentFactoryService>();
             var contentTypeRegistryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Utilities.IContentTypeRegistryService>();
-            var contentType = contentTypeRegistryService.GetContentType("CSharp");
-            var document = documentFactoryService.CreateAndLoadTextDocument("/home/mkrueger/work/Microsoft.VisualStudio.Text.Editor/Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform/Platforms/Gtk/TextViewHost/SkiaTextViewHost.cs", contentType);
+            var contentType = contentTypeRegistryService.GetContentType("Text");
+            var textBuffer = PlatformCatalog.Instance.TextBufferFactoryService.CreateTextBuffer(@"
+class Test
+{
+    public static void Main (string[] args)
+    {
+        
+    }
+}            
+", contentType);
+            var document = documentFactoryService.CreateTextDocument(textBuffer, "/a.cs");
             var dataModel = new VacuousTextDataModel(document.TextBuffer);
             var viewModel = new VacuousTextViewModel(dataModel);
             var textFactory = (TextEditorFactoryService)PlatformCatalog.Instance.TextEditorFactoryService;

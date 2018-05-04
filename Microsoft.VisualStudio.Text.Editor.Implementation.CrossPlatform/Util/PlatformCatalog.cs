@@ -29,5 +29,9 @@ namespace Microsoft.VisualStudio.Text.Editor
 
         [Import]
         internal ITextEditorFactoryService TextEditorFactoryService { get; private set; }
+
+        [Import]
+        internal ITextBufferFactoryService TextBufferFactoryService { get; private set; }
+
     }
 }
