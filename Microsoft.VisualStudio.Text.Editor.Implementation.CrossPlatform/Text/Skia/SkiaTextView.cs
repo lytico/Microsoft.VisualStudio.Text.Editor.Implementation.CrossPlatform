@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
@@ -71,7 +72,7 @@ namespace Microsoft.VisualStudio.Text.Editor
         [Order(After = PredefinedAdornmentLayers.Text)]
         private static readonly AdornmentLayerDefinition CaretAdornmentLayer = new AdornmentLayerDefinition();
 
-        public SkiaTextView(ITextViewModel textViewModel, ITextViewRoleSet roles, IEditorOptions parentOptions, TextEditorFactoryService factoryService, bool initialize = true)
+        public SkiaTextView(ITextViewModel textViewModel, ITextViewRoleSet roles, IEditorOptions parentOptions, TextEditorFactoryService factoryService, bool initialize = true) : this()
         {
             this._factoryService = factoryService;
             this.TextDataModel = textViewModel.DataModel;
@@ -83,6 +84,24 @@ namespace Microsoft.VisualStudio.Text.Editor
             _textSnapshot = _textBuffer.CurrentSnapshot;
             _visualSnapshot = _visualBuffer.CurrentSnapshot;
 
+            classifiedPaints = new Dictionary<string, TextStyle> {
+                [""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["comment"] = new TextStyle(new SKPaint { Color = SKColors.Gray, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["keyword"] = new TextStyle(new SKPaint { Color = SKColors.Blue, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["class name"] = new TextStyle(new SKPaint { Color = SKColors.Yellow, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["identifier"] = new TextStyle(new SKPaint { Color = SKColors.Orange, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["punctuation"] = new TextStyle(new SKPaint { Color = SKColors.AliceBlue, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["operator"] = new TextStyle(new SKPaint { Color = SKColors.AliceBlue, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["number"] = new TextStyle(new SKPaint { Color = SKColors.Purple, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["string"] = new TextStyle(new SKPaint { Color = SKColors.Brown, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                ["interface name"] = new TextStyle(new SKPaint { Color = SKColors.GreenYellow, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+                //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = this.Typeface, TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
+            };
             InitializeRendering();
 
             InitializeITextView();

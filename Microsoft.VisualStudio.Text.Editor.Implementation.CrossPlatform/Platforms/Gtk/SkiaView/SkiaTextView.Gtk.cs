@@ -13,17 +13,56 @@ using Gdk;
 using Gtk;
 using Cairo;
 using SkiaSharp;
+using SkiaSharp.Views.Desktop;
 
 namespace Microsoft.VisualStudio.Text.Editor
 {
-    partial class SkiaTextView : DrawingArea
+    partial class SkiaTextView : EventBox
     {
-          
-        public SkiaTextView(IntPtr p) : base(p)
+        global::SkiaSharp.Views.Gtk.SKWidget skiaView;
+
+        public SkiaTextView()
         {
+            this.skiaView = new global::SkiaSharp.Views.Gtk.SKWidget();
+            this.Child = skiaView;
+            //this.PackStart(skiaView, true, true, 01);
+            skiaView.PaintSurface += OnPaintSurface;
         }
 
+        private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
+        {
+            // the the canvas and properties
+            var canvas = e.Surface.Canvas;
+            /*
+            // get the screen density for scaling
+            var scale = 1f;
+            var scaledSize = new SKSize(e.Info.Width / scale, e.Info.Height / scale);
+            // handle the device screen density
+            canvas.Scale(scale);
 
+            // make sure the canvas is blank
+            canvas.Clear(SKColors.Red);
+
+            // draw some text
+            var paint = new SKPaint
+            {
+                Color = SKColors.Black,
+                IsAntialias = true,
+                Style = SKPaintStyle.Fill,
+                TextAlign = SKTextAlign.Center,
+                TextSize = 24
+            };
+            var coord = new SKPoint(scaledSize.Width / 2, (scaledSize.Height + paint.TextSize) / 2);
+            canvas.DrawText("SkiaSharp", coord, paint);*/
+            LayoutLines();
+            ViewportWidth = Allocation.Width * 2;
+            ViewportHeight = Allocation.Height * 2;
+            LayoutLines();
+            canvas.Clear(SKColors.White);
+            DrawLines(canvas);
+            ((SkiaTextCaret)Caret).OnRender(canvas);
+        }
+        /*
         protected override bool OnExposeEvent(EventExpose evnt)
         {
             const int width = 100;
@@ -63,7 +102,7 @@ namespace Microsoft.VisualStudio.Text.Editor
             }
 
             return base.OnExposeEvent(evnt);
-        }
+        }*/
 
     }
 }

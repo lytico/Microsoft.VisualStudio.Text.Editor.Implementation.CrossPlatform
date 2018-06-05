@@ -139,7 +139,7 @@ namespace Microsoft.VisualStudio.Text.Editor
             set
             {
                 _textView = value;
-                this.PackStart(_textView);
+                this.PackStart(_textView, true, true, 0);
             }
         }
 

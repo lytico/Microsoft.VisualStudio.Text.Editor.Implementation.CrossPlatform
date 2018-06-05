@@ -14,7 +14,7 @@ namespace Microsoft.VisualStudio.Text.Editor
         {
             paint.Color = SKColors.Black;
             paint.TextSize = FontSize;
-            paint.Typeface = SKTypeface.FromFamilyName("Menlo");
+            paint.Typeface = this.Typeface;
             paint.SubpixelText = true;
             paint.LcdRenderText = true;
             paint.IsAntialias = true;
@@ -35,26 +35,24 @@ namespace Microsoft.VisualStudio.Text.Editor
                 paint.GetFontMetrics(out FontMetrics);
             }
         }
+#if __MAC__
+        internal const string fontFamilyName = "Menlo";
+#else
+        internal const string fontFamilyName = "Courier New";
+#endif
+        SKTypeface typeface;
+        public SKTypeface Typeface {
+            get {
+                if (typeface == null)
+                {
+                    typeface = SKTypeface.FromFamilyName(fontFamilyName);
+                    Console.WriteLine(typeface.FamilyName);
+                }
+                return typeface;
+            }
+        }
 
-        Dictionary<string, TextStyle> classifiedPaints = new Dictionary<string, TextStyle>()
-        {
-            [""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["comment"] = new TextStyle(new SKPaint { Color = SKColors.Gray, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["keyword"] = new TextStyle(new SKPaint { Color = SKColors.Blue, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["class name"] = new TextStyle(new SKPaint { Color = SKColors.Yellow, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["identifier"] = new TextStyle(new SKPaint { Color = SKColors.Orange, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["punctuation"] = new TextStyle(new SKPaint { Color = SKColors.AliceBlue, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["operator"] = new TextStyle(new SKPaint { Color = SKColors.AliceBlue, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["number"] = new TextStyle(new SKPaint { Color = SKColors.Purple, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["string"] = new TextStyle(new SKPaint { Color = SKColors.Brown, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            ["interface name"] = new TextStyle(new SKPaint { Color = SKColors.GreenYellow, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-            //[""] = new TextStyle(new SKPaint { Color = SKColors.Black, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = FontSize, LcdRenderText = true, IsAntialias = true, SubpixelText = true }),
-        };
+        Dictionary<string, TextStyle> classifiedPaints;
 
         List<TextContentChangedEventArgs> changes = new List<TextContentChangedEventArgs>();
         void VisualBuffer_Changed(object sender, TextContentChangedEventArgs e)

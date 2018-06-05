@@ -17,9 +17,7 @@ namespace Microsoft.VisualStudio.Text.Editor
         {
             if (typeface == null)
                 throw new ArgumentNullException(nameof(typeface)); ;
-
             Typeface = typeface;
-
             int index;
             using (var blob = Typeface.OpenStream(out index).ToHarfBuzzBlob())
             using (var face = new Face(blob, (uint)index))
@@ -29,7 +27,9 @@ namespace Microsoft.VisualStudio.Text.Editor
 
                 font = new Font(face);
                 font.SetScale(FONT_SIZE_SCALE, FONT_SIZE_SCALE);
+#if __MAC__
                 font.SetFunctionsOpenType();
+#endif
             }
 
             buffer = new HarfBuzzSharp.Buffer();
@@ -56,7 +56,7 @@ namespace Microsoft.VisualStudio.Text.Editor
             // add the text to the buffer
             buffer.ClearContents();
             buffer.AddUtf8(text);
-
+            Console.WriteLine("text :" + text);
             // try to understand the text
             buffer.GuessSegmentProperties();
 
@@ -70,12 +70,14 @@ namespace Microsoft.VisualStudio.Text.Editor
 
             // get the sizes
             float textSizeY = paint.TextSize / FONT_SIZE_SCALE;
-            float textSizeX = textSizeY * paint.TextScaleX;
+            float textSizeX = 10 * paint.TextScaleX;
 
             var points = new SKPoint[len];
             var clusters = new uint[len];
             var codepoints = new uint[len];
             int lastTabIndex = -1;
+
+
             for (var i = 0; i < len; i++)
             {
                 if (info[i].Codepoint == 0 && text[i] == '\t')
@@ -92,6 +94,7 @@ namespace Microsoft.VisualStudio.Text.Editor
                     offset.X + pos[i].XOffset * textSizeX,
                     offset.Y - pos[i].YOffset * textSizeY
                 );
+                Console.WriteLine("point :" + points[i].X +"x"+ points[i].Y);
 
                 // move the cursor
                 offset.X += pos[i].XAdvance * textSizeX;

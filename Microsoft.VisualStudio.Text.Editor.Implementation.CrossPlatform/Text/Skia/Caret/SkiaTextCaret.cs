@@ -16,7 +16,7 @@ namespace Microsoft.VisualStudio.Text.Editor
     {
         #region Private Members
         internal SKPaint _caretBrush; // Internal for unit testing
-        internal SKPaint _regularBrush = new SKPaint() { Color = SKColors.Red, Typeface = SKTypeface.FromFamilyName("Menlo"), TextSize = 24, LcdRenderText = true, IsAntialias = true, SubpixelText = true };
+        internal SKPaint _regularBrush;
         internal SKPaint _overwriteBrush;
         internal SKPaint _defaultOverwriteBrush;
         internal SKPaint _defaultRegularBrush;
@@ -74,6 +74,7 @@ namespace Microsoft.VisualStudio.Text.Editor
         {
             // Verify
             Debug.Assert(wpfTextView != null);
+            _regularBrush = new SKPaint() { Color = SKColors.Red, Typeface = wpfTextView.Typeface, TextSize = 24, LcdRenderText = true, IsAntialias = true, SubpixelText = true };
             _wpfTextView = wpfTextView;
             _selection = selection;
             _guardedOperations = guardedOperations;
