@@ -158,7 +158,7 @@ namespace Microsoft.VisualStudio.Text.Editor
 
             _hasInitializeBeenCalled = true;
 
-            var documentFactoryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Text.ITextDocumentFactoryService>();
+var documentFactoryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Text.ITextDocumentFactoryService>();
             var contentTypeRegistryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Utilities.IContentTypeRegistryService>();
             var contentType = contentTypeRegistryService.GetContentType("Text");
             var textBuffer = PlatformCatalog.Instance.TextBufferFactoryService.CreateTextBuffer(@"

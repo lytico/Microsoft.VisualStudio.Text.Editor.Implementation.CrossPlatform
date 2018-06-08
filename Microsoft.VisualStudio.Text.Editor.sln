@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtkStartup", "GtkStartup\GtkStartup.csproj", "{11CBD621-4DB7-4B9E-865E-81D399B01760}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform", "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.csproj", "{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Gtk", "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Gtk.csproj", "{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacStartup", "MacStartup\MacStartup.csproj", "{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Mac", "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Mac\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Mac.csproj", "{5E16E39D-F6B0-436C-B2C1-2995173355AF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common", "Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common.shproj", "{239E0D30-FB51-4975-963D-2BE76557A235}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,20 +22,46 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugMac|Any CPU.ActiveCfg = DebugGtk|x86
-		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugMac|Any CPU.Build.0 = DebugGtk|x86
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseMac|Any CPU.ActiveCfg = DebugGtk|x86
-		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseMac|Any CPU.Build.0 = DebugGtk|x86
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugGtk|x86.ActiveCfg = DebugGtk|x86
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.DebugGtk|x86.Build.0 = DebugGtk|x86
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseGtk|x86.ActiveCfg = ReleaseGtk|x86
 		{11CBD621-4DB7-4B9E-865E-81D399B01760}.ReleaseGtk|x86.Build.0 = ReleaseGtk|x86
-		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugMac|Any CPU.ActiveCfg = DebugGtk|Any CPU
-		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugMac|Any CPU.Build.0 = DebugGtk|Any CPU
-		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseMac|Any CPU.ActiveCfg = DebugGtk|Any CPU
-		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseMac|Any CPU.Build.0 = DebugGtk|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugMac|Any CPU.ActiveCfg = DebugMac|Any CPU
+		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseMac|Any CPU.ActiveCfg = ReleaseMac|Any CPU
 		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugGtk|x86.ActiveCfg = DebugGtk|Any CPU
 		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.DebugGtk|x86.Build.0 = DebugGtk|Any CPU
 		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseGtk|x86.ActiveCfg = ReleaseGtk|Any CPU
 		{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}.ReleaseGtk|x86.Build.0 = ReleaseGtk|Any CPU
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.Debug|x86.ActiveCfg = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.Debug|x86.Build.0 = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.Release|x86.ActiveCfg = Release|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.Release|x86.Build.0 = Release|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.DebugMac|Any CPU.ActiveCfg = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.DebugMac|Any CPU.Build.0 = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.ReleaseMac|Any CPU.ActiveCfg = Release|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.ReleaseMac|Any CPU.Build.0 = Release|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.DebugGtk|x86.ActiveCfg = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.DebugGtk|x86.Build.0 = Debug|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.ReleaseGtk|x86.ActiveCfg = Release|x86
+		{20FDC639-DC85-4E3D-A452-21E8EAAE8D01}.ReleaseGtk|x86.Build.0 = Release|x86
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.Release|x86.Build.0 = Release|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.DebugMac|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.DebugMac|Any CPU.Build.0 = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.ReleaseMac|Any CPU.ActiveCfg = Release|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.ReleaseMac|Any CPU.Build.0 = Release|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.DebugGtk|x86.ActiveCfg = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.DebugGtk|x86.Build.0 = Debug|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.ReleaseGtk|x86.ActiveCfg = Release|Any CPU
+		{5E16E39D-F6B0-436C-B2C1-2995173355AF}.ReleaseGtk|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.StandardHeader = $2
 	EndGlobalSection
 EndGlobal

@@ -154,7 +154,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
                 Rect spanRect = spanRectangle.Value;
                 spanRect = spanRect.Intersect(viewRect);
 
-				if (spanRect != default(Rect))
+                if (spanRect != default(Rect))
                 {
                     // Determine two different rectangles for the span.  One is the span in its raw form.  The other is a "guess" at
                     // what the already-reserved space around the span will be.  We have a very-prevalent space reservation agent (the
@@ -208,7 +208,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
                     //  the edges of the screen.
 
                     Tuple<PopupStyles, Rect>[] positionChoices;
-					if (reservedRect != default(Rect))
+                    if (reservedRect != default(Rect))
                     {
                         if ((_style & PopupStyles.PositionClosest) == 0)
                         {
@@ -283,8 +283,13 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
         {
             get
             {
+#if __GTK__
+
                 Gdk.Display.Default.GetPointer(out int x, out int y);
                 return _popup.IsVisible ? _popup.Content.ScreenBounds.Contains(x, y) : false;
+#else
+                return false;
+#endif
             }
         }
 
@@ -316,8 +321,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             // For tooltips with style DismissOnMouseLeave
             if ((_style & (PopupStyles.DismissOnMouseLeaveText | PopupStyles.DismissOnMouseLeaveTextOrContent)) != 0)
             {
+#if __GTK__
                 _textView.VisualElement.MotionNotifyEvent += this.OnMouseMove;
-
+#endif
                 //TODO: This used to be Mouse.DirectlyOver, is it ok just use popup.Content?
                 _mouseContainer = _popup.Content;
                 if (_mouseContainer != null)
@@ -355,7 +361,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             // For tooltips with style DismissOnMouseLeave
             if ((_style & (PopupStyles.DismissOnMouseLeaveText | PopupStyles.DismissOnMouseLeaveTextOrContent)) != 0)
             {
+                #if __GTK__
                 _textView.VisualElement.MotionNotifyEvent -= this.OnMouseMove;
+                #endif
                 if (_mouseContainer != null)
                 {
                     _mouseContainer.MouseExited -= this.OnMouseLeave;
@@ -397,8 +405,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             }
         }
 
-        #region Event handlers
-        void OnMouseMove(object sender, Gtk.MotionNotifyEventArgs e)
+#region Event handlers
+#if __GTK__
+        void OnMouseMove(object sender,  Gtk.MotionNotifyEventArgs e)
         {
             if (_popup.IsVisible)
             {
@@ -410,7 +419,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
                 }
             }
         }
-
+#endif
         void OnMouseLeave(object sender, EventArgs e)
         {
             //TODO: This method, well whole MouseLeave logic is much simplefied in our case
@@ -435,8 +444,8 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             {
                 // The mouse left the element over which it was originally positioned.  This may or
                 // may not mean that the mouse left the span of text to which the popup is bound.
-                _textView.VisualElement.GetPointer (out int x, out int y);
-                if (this.ShouldClearToolTipOnMouseMove(new Point(x,y)))
+                _textView.VisualElement.GetPointer(out int x, out int y);
+                if (this.ShouldClearToolTipOnMouseMove(new Point(x, y)))
                 {
                     shouldRemoveAgent = true;
                 }
@@ -515,7 +524,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             }
         }
 
-        #endregion
+#endregion
 
         internal bool ShouldClearToolTipOnMouseMove(Point mousePt)
         {
@@ -524,7 +533,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             //var bottomRight = _textView.VisualElement.GetScreenCoordinates(new Gdk.Point(_textView.VisualElement.WidthRequest, _textView.VisualElement.HeightRequest));
             ////TODO: Test if this is correct
             //if (!new Rect(topLeft.ToXwtPoint(), bottomRight.ToXwtPoint()).Contains(x, y))
-                //return true;
+            //return true;
 
             return this.InnerShouldClearToolTipOnMouseMove(mousePt);
         }
@@ -576,7 +585,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             // return _textView.VisualElement.GetScreenCoordinates(new Gdk.Point((int)(x - _textView.ViewportLeft), (int)(y - _textView.ViewportTop))).ToXwtPoint();
         }
 
-        #region Static positioning helpers
+#region Static positioning helpers
         internal static Rect GetLocation(PopupStyles style, Size desiredSize, Rect spanRectInScreenCoordinates, Rect reservedRect, Rect screenRect)
         {
             if ((style & PopupStyles.PositionLeftOrRight) != 0)
@@ -652,11 +661,12 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             return (outer.Left - 0.01 <= inner.Left) && (inner.Right <= outer.Right + 0.01) &&
                    (outer.Top - 0.01 <= inner.Top) && (inner.Bottom <= outer.Bottom + 0.01);
         }
-        #endregion
-
+#endregion
         internal abstract class PopupOrWindowContainer
         {
             private Widget _content;
+#if __GTK__
+
 			protected Gtk.Container _placementTarget;
 
 			public static PopupOrWindowContainer Create(Widget content, Gtk.Container placementTarget)
@@ -669,7 +679,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
                 _content = content;
                 _placementTarget = placementTarget;
             }
-
+#endif
             public abstract bool IsVisible { get; }
 
             public Widget Content { get { return _content; } }
@@ -681,7 +691,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             public abstract Size Size { get; }
         }
 
-		internal class PopUpContainer : PopupOrWindowContainer
+        internal class PopUpContainer : PopupOrWindowContainer
         {
 #if WINDOWS
             private class NoTopmostPopup : XwtThemedPopup
@@ -710,7 +720,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
         }
 			internal XwtThemedPopup _popup = new NoTopmostPopup ();
 #else
-         //   internal XwtThemedPopup _popup = new XwtThemedPopup();
+            //   internal XwtThemedPopup _popup = new XwtThemedPopup();
 #endif
 
             // WPF popup doesn't detach its child from the visual tree when the popup is not open, 
@@ -723,15 +733,15 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             // detach popup content when popup has been closed and so significantly speed up
             // popup closing.
             FrameBox _popupContentContainer = new FrameBox();
-
-			public PopUpContainer(Widget content, Gtk.Container placementTarget)
+#if __GTK__
+            public PopUpContainer(Widget content, Gtk.Container placementTarget)
                 : base(content, placementTarget)
             {
                 //WindowTransparencyDecorator.Attach(_popup);//TODO: not sure we want this on all popus?
                 //_popup.Content = _popupContentContainer;
                 //_popup.Hidden += OnPopupClosed;
             }
-
+#endif
             private void OnPopupClosed(object sender, EventArgs e)
             {
                 _popupContentContainer.Content = null;

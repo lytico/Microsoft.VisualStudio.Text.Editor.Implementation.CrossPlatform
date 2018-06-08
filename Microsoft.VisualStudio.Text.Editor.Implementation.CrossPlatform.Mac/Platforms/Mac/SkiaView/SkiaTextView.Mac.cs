@@ -32,6 +32,10 @@ namespace Microsoft.VisualStudio.Text.Editor
 {
     partial class SkiaTextView : SkiaSharp.Views.Mac.MySKGLView
     {
+        public SkiaTextView()
+        {
+        }
+
         public override void ScrollWheel(NSEvent theEvent)
         {
             Console.WriteLine("SW" + sw.Elapsed);

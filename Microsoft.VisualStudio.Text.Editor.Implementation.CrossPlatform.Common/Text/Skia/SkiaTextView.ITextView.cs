@@ -1,5 +1,4 @@
 ﻿using System;
-using Gtk;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Editor.Implementation;
@@ -69,9 +68,11 @@ namespace Microsoft.VisualStudio.Text.Editor
         public bool HasAggregateFocus => true;
 
         public PropertyCollection Properties => _properties;
-
-        public Widget VisualElement => throw new NotImplementedException();
-
+#if __GTK__
+        public Gtk.Widget VisualElement => throw new NotImplementedException();
+#else
+        public AppKit.NSView VisualElement => throw new NotImplementedException();
+#endif
         public TextEditorFactoryService ComponentContext => throw new NotImplementedException();
 
         public event EventHandler<TextViewLayoutChangedEventArgs> LayoutChanged;

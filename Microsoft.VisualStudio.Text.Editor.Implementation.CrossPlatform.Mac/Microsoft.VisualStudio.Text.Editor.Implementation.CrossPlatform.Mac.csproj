@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">DebugGtk</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}</ProjectGuid>
+    <ProjectGuid>{5E16E39D-F6B0-436C-B2C1-2995173355AF}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft.VisualStudio.Text.Editor</RootNamespace>
-    <AssemblyName>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <RootNamespace>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Mac</RootNamespace>
+    <AssemblyName>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Mac</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugGtk|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;__GTK__</DefineConstants>
+    <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseGtk|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\Debug</OutputPath>
-    <DefineConstants>__GTK__</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\bin\Debug</OutputPath>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler></HttpClientHandler>
+    <LinkMode></LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\bin\Debug</OutputPath>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler></HttpClientHandler>
+    <LinkMode></LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="mscorlib" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -64,15 +73,12 @@
     <Reference Include="System.Composition.TypedParts">
       <HintPath>..\packages\System.Composition.TypedParts.1.1.0\lib\netstandard2.0\System.Composition.TypedParts.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xaml" />
     <Reference Include="Xwt">
       <HintPath>..\..\monodevelop\main\build\bin\Xwt.dll</HintPath>
     </Reference>
     <Reference Include="Xwt.Gtk">
       <HintPath>..\..\monodevelop\main\build\bin\Xwt.Gtk.dll</HintPath>
     </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="Mono.Cairo" />
     <Reference Include="System.AppContext">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
     </Reference>
@@ -351,107 +357,27 @@
     <Reference Include="System.ValueTuple">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Mac" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Text\Classification\EditorFormatMap.cs" />
-    <Compile Include="Text\Classification\EditorFormatMapService.cs" />
-    <Compile Include="Text\Classification\FormatItemsEventArgs.cs" />
-    <Compile Include="Text\Classification\IEditorFormatMap.cs" />
-    <Compile Include="Text\Classification\IEditorFormatMapService.cs" />
-    <Compile Include="Text\Skia\SkiaTextView.cs" />
-    <Compile Include="Text\Skia\SkiaTextView.Adorment.cs" />
-    <Compile Include="Text\Skia\SkiaTextView.Rendering.cs" />
-    <Compile Include="Text\Skia\SkiaTextView.TextInput.cs" />
-    <Compile Include="Text\Skia\SkiaTextViewLine.cs" />
-    <Compile Include="Text\Skia\SkiaTextViewLineCollection.cs" />
-    <Compile Include="Text\Skia\SkiaViewScroller.cs" />
-    <Compile Include="Text\Skia\TextViewOptions.cs" />
-    <Compile Include="Text\Skia\ViewStack.cs" />
-    <Compile Include="Text\Skia\Selection\BrushSelectionPainter.cs" />
-    <Compile Include="Text\Skia\Selection\ISelectionPainter.cs" />
-    <Compile Include="Text\Skia\Selection\SelectionAdornment.cs" />
-    <Compile Include="Text\Skia\Selection\SkiaTextSelection.cs" />
-    <Compile Include="Text\Skia\Selection\SolidColorBrushSelectionPainter.cs" />
-    <Compile Include="Text\Skia\Adornment\AdornmentElement.cs" />
-    <Compile Include="Text\Skia\Adornment\AdornmnetLayer.cs" />
-    <Compile Include="Text\Skia\Caret\CaretBlinkTimeManager.cs" />
-    <Compile Include="Text\Skia\Caret\SkiaTextCaret.cs" />
-    <Compile Include="Util\DispatcherTimer.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\Gles.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\MyShaper.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\MySKCanvasView.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\MySKGLView.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\SKDrawable.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\SKGLDrawable.cs" />
-    <Compile Include="Platforms\Mac\TextViewHost\SkiaTextViewHost.cs" />
-    <Compile Include="Platforms\Common\SkiaElement.cs" />
-    <Compile Include="External\VSEditor\Text\Impl\WpfView\SpaceReservationStack.cs" />
-    <Compile Include="External\VSEditor\ConnectionManager.cs" />
-    <Compile Include="External\VSEditor\Text\Impl\WpfView\SpaceReservationManager.cs" />
-    <Compile Include="External\VSEditor\FakeWpf\Geometry.cs" />
-    <Compile Include="External\VSEditor\Text\Def\TextUIWpf\Editor\ISpaceReservationManager.cs" />
-    <Compile Include="Util\CompositionManager.cs" />
-    <Compile Include="Util\PlatformCatalog.cs" />
-    <Compile Include="Util\LoggingService.cs" />
-    <Compile Include="External\VSEditor\TextEditorFactoryService.cs" />
-    <Compile Include="External\VSEditor\ITextEditorFactoryService.cs" />
-    <Compile Include="External\VSEditor\TextViewRoleSet.cs" />
-    <Compile Include="External\VSEditor\VacuousTextDataModel.cs" />
-    <Compile Include="External\VSEditor\FakeWpf\Mouse.cs" />
-    <Compile Include="External\VSEditor\FakeWpf\SimulatingExtensions.cs" />
-    <Compile Include="Text\Skia\SkiaTextView.ITextView.cs" />
-    <Compile Include="External\VSEditor\Text\Impl\WpfView\PopupAgent.cs" />
-    <Compile Include="External\VSEditor\Text\Def\TextUIWpf\Editor\ISpaceReservationAgent.cs" />
-    <Compile Include="External\VSEditor\Text\Def\TextUIWpf\Editor\SpaceReservationAgentChangedEventArgs.cs" />
-    <Compile Include="External\VSEditor\Text\Def\TextUIWpf\Editor\SpaceReservationManagerDefinition.cs" />
     <Compile Include="Platforms\Mac\SkiaView\SkiaTextView.Mac.cs" />
-    <Compile Include="Platforms\Gtk\SkiaView\SkiaTextView.Gtk.cs" />
-    <Compile Include="Platforms\Gtk\TextViewHost\SkiaTextViewHost.cs" />
-    <Compile Include="Text\Adornment\IAdornmentLayer.cs" />
-    <Compile Include="Text\Adornment\PredefinedAdornmentLayers.cs" />
-    <Compile Include="Text\Adornment\AdornmentPositioningBehavior2.cs" />
-    <Compile Include="Text\Adornment\AdornmentLayerDefinition.cs" />
-    <Compile Include="Text\Margins\ContainerMargin.cs" />
-    <Compile Include="External\VSEditor\SmartIndentationService.cs" />
-    <Compile Include="Util\JoinableTaskContextHost.cs" />
+    <Compile Include="Platforms\Mac\TextViewHost\SkiaTextViewHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Text\" />
-    <Folder Include="Text\Classification\" />
-    <Folder Include="Text\Skia\" />
-    <Folder Include="Text\Skia\Selection\" />
-    <Folder Include="Text\Skia\Adornment\" />
-    <Folder Include="Text\Skia\Caret\" />
-    <Folder Include="Util\" />
     <Folder Include="Platforms\" />
     <Folder Include="Platforms\Mac\" />
-    <Folder Include="Platforms\Mac\SkiaGLView\" />
-    <Folder Include="Platforms\Mac\TextViewHost\" />
-    <Folder Include="Platforms\Common\" />
-    <Folder Include="Platforms\Mac\SkiaView\" />
-    <Folder Include="Platforms\Gtk\" />
-    <Folder Include="Platforms\Gtk\SkiaView\" />
-    <Folder Include="Platforms\Gtk\TextViewHost\" />
-    <Folder Include="Text\Adornment\" />
-    <Folder Include="Text\Margins\" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\SkiaSharp.1.60.0\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.60.0\build\net45\SkiaSharp.targets')" />
-  <Import Project="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.7.17\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.7.17\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <StandardHeader IncludeInNewFiles="True" Text="&#xA; Copyright (c) Microsoft Corporation. All rights reserved.&#xA; Licensed under the MIT License. See License.txt in the project root for license information.&#xA;&#xA;This file contain implementations details that are subject to change without notice.&#xA;Use at your own risk.&#xA;" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
-  <Import Project="..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.17\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.17\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
-  <Import Project="..\packages\SkiaSharp.1.60.1\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.60.1\build\net45\SkiaSharp.targets')" />
-  <Import Project="..\packages\HarfBuzzSharp.1.4.6.1\build\net45\HarfBuzzSharp.targets" Condition="Exists('..\packages\HarfBuzzSharp.1.4.6.1\build\net45\HarfBuzzSharp.targets')" />
+  <Import Project="..\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common.projitems" Label="Shared" Condition="Exists('..\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

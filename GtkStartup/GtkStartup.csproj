@@ -71,7 +71,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.csproj">
       <Project>{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}</Project>
-      <Name>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform</Name>
+      <Name>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Gtk</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

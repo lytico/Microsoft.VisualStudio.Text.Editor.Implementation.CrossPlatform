@@ -27,9 +27,7 @@ namespace Microsoft.VisualStudio.Text.Editor
 
                 font = new Font(face);
                 font.SetScale(FONT_SIZE_SCALE, FONT_SIZE_SCALE);
-#if __MAC__
                 font.SetFunctionsOpenType();
-#endif
             }
 
             buffer = new HarfBuzzSharp.Buffer();
@@ -70,7 +68,7 @@ namespace Microsoft.VisualStudio.Text.Editor
 
             // get the sizes
             float textSizeY = paint.TextSize / FONT_SIZE_SCALE;
-            float textSizeX = 10 * paint.TextScaleX;
+            float textSizeX = textSizeY * paint.TextScaleX;
 
             var points = new SKPoint[len];
             var clusters = new uint[len];

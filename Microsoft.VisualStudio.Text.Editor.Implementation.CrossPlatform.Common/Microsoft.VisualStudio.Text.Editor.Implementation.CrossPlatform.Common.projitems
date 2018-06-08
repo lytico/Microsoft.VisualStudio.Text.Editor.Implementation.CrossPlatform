@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{239E0D30-FB51-4975-963D-2BE76557A235}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Common</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\ConnectionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\FakeWpf\Geometry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\FakeWpf\SimulatingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\ITextEditorFactoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\SmartIndentationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Def\TextUIWpf\Editor\ISpaceReservationAgent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Def\TextUIWpf\Editor\ISpaceReservationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Def\TextUIWpf\Editor\SpaceReservationAgentChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Def\TextUIWpf\Editor\SpaceReservationManagerDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Impl\WpfView\PopupAgent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Impl\WpfView\SpaceReservationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\Text\Impl\WpfView\SpaceReservationStack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\TextEditorFactoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\TextViewRoleSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)External\VSEditor\VacuousTextDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platforms\Common\SkiaElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Adornment\AdornmentLayerDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Adornment\AdornmentPositioningBehavior2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Adornment\IAdornmentLayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Adornment\PredefinedAdornmentLayers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Classification\EditorFormatMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Classification\EditorFormatMapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Classification\FormatItemsEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Classification\IEditorFormatMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Classification\IEditorFormatMapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Margins\ContainerMargin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Adornment\AdornmentElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Adornment\AdornmnetLayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Caret\CaretBlinkTimeManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Caret\SkiaTextCaret.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Selection\BrushSelectionPainter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Selection\ISelectionPainter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Selection\SelectionAdornment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Selection\SkiaTextSelection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\Selection\SolidColorBrushSelectionPainter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextView.Adorment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextView.ITextView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextView.Rendering.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextView.TextInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextViewLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaTextViewLineCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\SkiaViewScroller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\TextViewOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\Skia\ViewStack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\CompositionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\DispatcherTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\JoinableTaskContextHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\LoggingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\PlatformCatalog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)External\" />
+    <Folder Include="$(MSBuildThisFileDirectory)VSEditor\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Platforms\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Text\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Util\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Platforms\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Platforms\" />
+  </ItemGroup>
+</Project>

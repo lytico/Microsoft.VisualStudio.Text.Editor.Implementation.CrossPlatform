@@ -29,10 +29,11 @@ using System.Collections.Generic;
 using AppKit;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Editor.Implementation;
+using Microsoft.VisualStudio.Text.Utilities;
 
 namespace Microsoft.VisualStudio.Text.Editor
 {
-    class SkiaTextViewHost : NSView
+    public class SkiaTextViewHost : NSView
     {
 #region Private Members
 
@@ -52,9 +53,9 @@ namespace Microsoft.VisualStudio.Text.Editor
         /// <summary>
         /// Create the WPF text editor Control
         /// </summary>
-        public SkiaTextViewHost(bool setFocus, TextEditorFactoryService factory, bool initialize = true)
+        public SkiaTextViewHost(bool setFocus, ITextEditorFactoryService factory, bool initialize = true)
         {
-            _factory = factory;
+            _factory = (TextEditorFactoryService)factory;
             _setFocus = setFocus;
 
             if (initialize)
@@ -129,7 +130,7 @@ namespace Microsoft.VisualStudio.Text.Editor
         /// <summary>
         /// Gets the Text View that is being hosted
         /// </summary>
-        public SkiaTextView TextView
+        internal SkiaTextView TextView
         {
             get
             {
@@ -161,6 +162,25 @@ namespace Microsoft.VisualStudio.Text.Editor
                 throw new InvalidOperationException("Attempted to Initialize a WpfTextViewHost twice");
 
             _hasInitializeBeenCalled = true;
+
+            var documentFactoryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Text.ITextDocumentFactoryService>();
+            var contentTypeRegistryService = CompositionManager.GetExportedValue<Microsoft.VisualStudio.Utilities.IContentTypeRegistryService>();
+            var contentType = contentTypeRegistryService.GetContentType("Text");
+            var textBuffer = PlatformCatalog.Instance.TextBufferFactoryService.CreateTextBuffer(@"
+class Test
+{
+    public static void Main (string[] args)
+    {
+        
+    }
+}            
+", contentType);
+            var document = documentFactoryService.CreateTextDocument(textBuffer, "/a.cs");
+            var dataModel = new VacuousTextDataModel(document.TextBuffer);
+            var viewModel = new VacuousTextViewModel(dataModel);
+            var textFactory = (TextEditorFactoryService)PlatformCatalog.Instance.TextEditorFactoryService;
+            TextView = new SkiaTextView(viewModel, textFactory.AllPredefinedRoles, textFactory.EditorOptionsFactoryService.GlobalOptions, textFactory);
+
         }
 
 #endregion // Private Handlers
