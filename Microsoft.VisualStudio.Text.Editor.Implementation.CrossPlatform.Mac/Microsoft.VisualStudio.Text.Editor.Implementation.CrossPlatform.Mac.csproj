@@ -363,7 +363,6 @@
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\Gles.cs" />
-    <Compile Include="Platforms\Mac\SkiaGLView\MyShaper.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\MySKCanvasView.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\MySKGLView.cs" />
     <Compile Include="Platforms\Mac\SkiaGLView\SKDrawable.cs" />

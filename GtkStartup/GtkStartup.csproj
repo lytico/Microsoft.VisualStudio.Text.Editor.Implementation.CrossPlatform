@@ -2,37 +2,30 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">DebugGtk</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{11CBD621-4DB7-4B9E-865E-81D399B01760}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugGtk|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <AssemblyName>GtkStartup</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseGtk|x86' ">
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\Debug</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <AssemblyName>GtkStartup</AssemblyName>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\bin\Debug</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\bin\Release</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugGtk|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugGtk</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>GtkStartup</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseGtk|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\ReleaseGtk</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>GtkStartup</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,9 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.csproj">
+    <ProjectReference Include="..\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform\Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Gtk.csproj">
       <Project>{F12C2A51-2DA0-4228-B85D-256A8D5A0E57}</Project>
       <Name>Microsoft.VisualStudio.Text.Editor.Implementation.CrossPlatform.Gtk</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

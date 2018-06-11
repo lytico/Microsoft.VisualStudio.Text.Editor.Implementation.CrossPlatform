@@ -7,7 +7,7 @@ public partial class MainWindow : Gtk.Window
 {
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
-        Child = new SkiaTextViewHost(true);
+        Child = new Microsoft.VisualStudio.Text.Editor.SkiaTextViewHost(true);
         Build();
     }
 

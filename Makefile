@@ -8,7 +8,7 @@ all:
 		unzip archive.zip; \
 	fi
 	nuget restore
-	msbuild /p:Configuration=$(CONFIGURATION) /p:Platform="x86"
+	msbuild /p:Configuration=$(CONFIGURATION)
 	cp -t bin/$(DEST_DIR) \
 	  ./skia_bin/output/native/linux/x64/libSkiaSharp.so \
 		./skia_bin/output/native/linux/x64/libHarfBuzzSharp.so \

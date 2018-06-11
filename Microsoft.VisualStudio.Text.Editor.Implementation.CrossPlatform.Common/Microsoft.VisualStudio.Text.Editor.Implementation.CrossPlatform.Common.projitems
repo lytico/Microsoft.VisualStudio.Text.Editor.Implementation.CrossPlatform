@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Util\JoinableTaskContextHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\LoggingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\PlatformCatalog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Platforms\Common\MyShaper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)External\" />
