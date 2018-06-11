@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">DebugGtk</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{11CBD621-4DB7-4B9E-865E-81D399B01760}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -14,18 +14,6 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\bin\Release</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugGtk|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\DebugGtk</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <AssemblyName>GtkStartup</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseGtk|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\ReleaseGtk</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <AssemblyName>GtkStartup</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
